@@ -1,0 +1,9 @@
+{
+  // Config for scripts in bin directory.
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "Node"
+  },
+  "inclue": ["bin/**", "src/**"],
+  "exclude": ["dist/**", "build.js", "test/**", "node_modules"]
+}

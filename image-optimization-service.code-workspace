@@ -1,0 +1,38 @@
+{
+  "folders": [
+    {
+      "name": "✨ root",
+      "path": ".",
+    },
+    {
+      "name": "🚀 lambda-image-processing",
+      "path": "apps/lambda-image-processing",
+    },
+    {
+      "name": "🚀 lambda-edge-url-rewrite",
+      "path": "apps/lambda-edge-url-rewrite",
+    },
+    {
+      "name": "📦 packages/shared-image-optimization",
+      "path": "packages/shared-image-optimization",
+    },
+    {
+      "name": "🏗️ infra/app",
+      "path": "infra/app",
+    },
+    {
+      "name": "🏗️ infra/image-optimization",
+      "path": "infra/image-optimization",
+    },
+  ],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "jest.disabledWorkspaceFolders": [
+      "apps/lambda-image-processing/lambda-layers-sharp",
+      "packages/shared-image-optimization",
+      ".",
+    ],
+    "jest.runMode": "on-demand",
+  },
+}

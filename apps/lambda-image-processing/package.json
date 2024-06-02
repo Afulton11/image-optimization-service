@@ -1,0 +1,44 @@
+{
+  "name": "lambda-image-processing",
+  "version": "0.0.1",
+  "description": "An AWS lambda that optimizes images",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "prebuild": "env npm_config_cpu=arm64 npm_config_os=linux yarn install",
+    "build": "tsup src/index.ts --env.NODE_ENV production",
+    "build-layers": "cd ./lambda-layers-sharp && npm run build",
+    "watch": "npm run build -- --watch",
+    "//": "If we have sharp as a dev dependency, then the lambdas will attempt to install it and fail.",
+    "pretest": "yarn add -D sharp",
+    "test": "jest",
+    "posttest": "yarn remove sharp",
+    "esbuild": "esbuild"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-cloudfront": "^3.485.0",
+    "@aws-sdk/util-stream-node": "^3.374.0",
+    "@types/aws-lambda": "^8.10.130",
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.11.19",
+    "aws-sdk-client-mock": "^3.0.1",
+    "esbuild": "^0.19.8",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.465.0",
+    "@aws-sdk/lib-storage": "^3.465.0",
+    "@aws-sdk/xhr-http-handler": "^3.465.0",
+    "@my/shared-image-optimization": "0.0.1",
+    "http-status-codes": "^2.3.0",
+    "xmlhttprequest-ssl": "^2.1.1"
+  }
+}

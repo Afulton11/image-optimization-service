@@ -1,0 +1,77 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "globalEnv": [
+    "DISABLE_EXTRACTION",
+    "NODE_ENV",
+    "EAS_BUILD_PLATFORM",
+    "DATABASE_URL",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+    "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY",
+    "CLERK_SECRET_KEY"
+  ],
+  "pipeline": {
+    "db-generate": {
+      "outputs": ["node_modules/@prisma/client/**"],
+      "inputs": ["prisma/schema.prisma"],
+      "cache": false
+    },
+    "@my/db#db-migrate": {
+      "dependsOn": ["db-generate"],
+      "inputs": ["prisma/**"],
+      "cache": false
+    },
+    "db-push": {
+      "inputs": ["prisma/**"],
+      "cache": false
+    },
+    "dev": {
+      "dependsOn": ["^db-generate"],
+      "cache": false,
+      "persistent": true
+    },
+    "studio": {
+      "inputs": ["prisma/schema.prisma"],
+      "cache": false
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "build/**",
+        "node_modules/.cache/metro/**",
+        ".expo/**",
+        "dist/**",
+        "types/**",
+        ".tamagui/**"
+      ]
+    },
+    "next-app#build": {
+      "dependsOn": ["^build", "@my/db#db-migrate"],
+      "outputs": [".next/**", "!.next/cache/**", "node_modules/.cache/metro/**", ".tamagui/**"]
+    },
+    "@infra/app#build": {
+      "dependsOn": ["^build", "lambda-image-processing#build-layers"],
+      "outputs": ["dist/**"]
+    },
+    "lambda-image-processing#build-layers": {
+      "inputs": ["lambda-layers-sharp/package.json", "lambda-layers-sharp/package-lock.json"],
+      "outputs": [
+        "lambda-layers-sharp/node_modules/**",
+        "lambda-layers-sharp/dist/**",
+        "lambda-layers-sharp/layer/**"
+      ]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "clean": {
+      "cache": false
+    },
+    "//#clean": {
+      "cache": false
+    },
+    "type-check": {
+      "dependsOn": ["^db-generate"],
+      "cache": false
+    }
+  }
+}

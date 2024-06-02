@@ -1,0 +1,24 @@
+{
+  "name": "@layers/sharp",
+  "version": "0.1.0",
+  "description": "A layer for lambda containing the sharp library binaries.",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "prepare": "./bin/prepare-layer.js"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules layer",
+    "install": "npm i --save-dev esbuild@^0.20.1 && npm i --save-exact --cpu=arm64 --os=linux --libc=glibc sharp",
+    "build": "npm run clean && npm run install && esbuild --bundle ./node_modules/sharp --outfile=dist/index.js --minify --format=cjs --platform=node",
+    "postbuild": "npx prepare"
+  },
+  "dependencies": {
+    "sharp": "0.33.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.2"
+  }
+}

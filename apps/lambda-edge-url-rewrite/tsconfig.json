@@ -1,0 +1,16 @@
+{
+  "extends": "../../infra/tsconfig.base.json",
+  "compilerOptions": {
+    // Cloudfront functions only support ES5 features.
+    // See https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-javascript-runtime-features.html
+    "target": "ES5",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "incremental": false, // required. See https://github.com/egoist/tsup/issues/884#issuecomment-1568650402
+    "strict": true,
+    "types": ["node", "jest"]
+  },
+  "include": ["src/"],
+  "exclude": ["dist/**", "build.js", "test/**", "node_modules"]
+}

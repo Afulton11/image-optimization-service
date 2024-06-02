@@ -1,0 +1,32 @@
+{
+  "name": "shep-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "infra/*"
+  ],
+  "packageManager": "yarn@3.6.4",
+  "prisma": {
+    "schema": "./packages/db/prisma/schema.prisma"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "fix": "manypkg fix",
+    "postinstall": "yarn check-deps",
+    "build": "turbo build",
+    "clean": "rm -rf node_modules",
+    "clean:workspaces": "turbo clean ; rm -rf .yarn/cache .yarn/install-state.gz",
+    "check-deps": "check-dependency-version-consistency ."
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.23.5",
+    "@manypkg/cli": "^0.21.1",
+    "check-dependency-version-consistency": "^3.3.0",
+    "eslint": "^8.54.0",
+    "node-gyp": "^9.4.1",
+    "prettier": "^3.2.5",
+    "turbo": "^1.12.5",
+    "typescript": "^5.2.2"
+  }
+}

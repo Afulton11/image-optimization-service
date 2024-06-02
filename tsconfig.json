@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": false,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "app/*": ["./packages/app/*"],
+      "@my/shared-image-optimization/*": ["./packages/shared-image-optimization/*"],
+      "@my/shared": ["./packages/shared/*"],
+      "@my/ui/*": ["./packages/ui/*"],
+      "@my/api/*": ["./packages/api/*"],
+      "@my/db/*": ["./packages/db/*"]
+    }
+  }
+  // "references": [{ "path": "./packages/api" }]
+}

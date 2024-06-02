@@ -1,0 +1,10 @@
+{
+  "extends": "../../infra/tsconfig.base.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "types": ["node", "jest"],
+    "strictNullChecks": true
+  },
+  "include": ["src/"],
+  "exclude": ["dist/**", "build.js", "test/**", "node_modules"]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@infra/image-optimization",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup lib/index.ts --format cjs --dts --sourcemap",
+    "watch": "yarn build -- -w",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.11.19",
+    "aws-cdk": "^2.118.0",
+    "aws-cdk-lib": "^2.118.0",
+    "constructs": "^10.3.0",
+    "jest": "^29.7.0",
+    "lambda-edge-url-rewrite": "0.0.1",
+    "lambda-image-processing": "0.0.1",
+    "ts-jest": "^29.1.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "aws-cdk-lib": "2.118.0",
+    "constructs": "^10.3.0"
+  },
+  "dependencies": {
+    "@my/shared-image-optimization": "0.0.1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@my/shared-image-optimization",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --dts",
+    "watch": "npm run build -- --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "ts-node": "^10.9.1",
+    "tsup": "^8.0.0",
+    "typescript": "^5.2.2"
+  }
+}
